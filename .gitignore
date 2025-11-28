@@ -1,0 +1,35 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build
+bin/
+obj/
+out/
+
+# Rider
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# User-specific files
+*.log
+*.vsconfig
+
+# ASP.NET Core
+appsettings.*.json
+*.db
+
+# Node / Frontend (if any)
+node_modules/
+wwwroot/lib/
+
+# Others
+*.pdb
+*.exe
+*.cache
