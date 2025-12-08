@@ -37,7 +37,7 @@ namespace MyBlog.App.Repositories.Implements
             return query;
         }
 
-        public async Task<T> GetById(int id, bool isTracking, params string[] includes)
+        public async Task<T> GetByIdAsync(int id, bool isTracking, params string[] includes)
         {
             var query = Table.AsQueryable();
             if (!isTracking) query = query.AsNoTracking();
@@ -56,6 +56,11 @@ namespace MyBlog.App.Repositories.Implements
         {
             EntityEntry entry = _context.Remove(entity);
             return entry.State == EntityState.Deleted;
+        }
+
+        public async Task<int> SaveAsync()
+        {
+            return await _context.SaveChangesAsync();
         }
 
         public bool Update(T entity)
