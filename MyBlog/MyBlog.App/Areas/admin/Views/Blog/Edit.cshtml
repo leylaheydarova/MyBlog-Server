@@ -1,0 +1,36 @@
+﻿@model BlogUpdateDto
+@{
+    ViewData["Title"] = "Update Blog";
+}
+
+<div class="card card-primary card-outline mb-4">
+    <!--begin::Header-->
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Update Blog</h4>
+    </div>
+    <!--end::Header-->
+    <!--begin::Form-->
+    <form asp-action="Edit" method="post" asp-route-id="@Model.Id" asp-antiforgery="true">
+        <!--begin::Body-->
+        <div class="card-body">
+            <div class="mb-3">
+                <label asp-for="@Model.Title" class="form-label">Title</label>
+                <input asp-for="@Model.Title" class="form-control" placeholder="e.g. Technology" />
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Text" class="form-label">Text</label>
+                <input asp-for="@Model.Text" class="form-control" placeholder="e.g. Technology" />
+                <span asp-validation-for="@Model.Text" class="text-danger"></span>
+            </div>
+        </div>
+        <!--end::Body-->
+        <!--begin::Footer-->
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a class="btn btn-secondary" asp-area="admin" asp-controller="blog" asp-action="index">Cancel</a>
+        </div>
+        <!--end::Footer-->
+    </form>
+    <!--end::Form-->
+</div>

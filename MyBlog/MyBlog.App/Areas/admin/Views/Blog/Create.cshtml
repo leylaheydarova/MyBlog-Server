@@ -1,0 +1,41 @@
+﻿@model BlogCreateDto
+@{
+    ViewData["Title"] = "Create Blog";
+}
+
+<div class="card card-primary card-outline mb-4">
+    <!--begin::Header-->
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Create Blog</h4>
+    </div>
+    <!--end::Header-->
+    <!--begin::Form-->
+    <form asp-action="Create" method="post" asp-antiforgery="true">
+        <!--begin::Body-->
+        <div class="card-body">
+            <div class="mb-3">
+                <label asp-for="@Model.Title" class="form-label">Title</label>
+                <input asp-for="@Model.Title" class="form-control" placeholder="e.g. Technology" />
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Text" class="form-label">Text</label>
+                <input asp-for="@Model.Text" class="form-control" placeholder="e.g. Lorem ipsum" />
+                <span asp-validation-for="@Model.Text" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.CategoryId" class="form-label">Category Id</label>
+                <input asp-for="@Model.CategoryId" class="form-control" placeholder="e.g. Technology" />
+                <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+            </div>
+        </div>
+        <!--end::Body-->
+        <!--begin::Footer-->
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a class="btn btn-secondary" asp-area="admin" asp-controller="blog" asp-action="index">Cancel</a>
+        </div>
+        <!--end::Footer-->
+    </form>
+    <!--end::Form-->
+</div>

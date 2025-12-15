@@ -1,23 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyBlog.App.DTOs.Category;
+using MyBlog.App.DTOs.Blog;
 using MyBlog.App.Services.Interfaces;
 
 namespace MyBlog.App.Areas.admin.Controllers
 {
     [Area("Admin")]
-    public class CategoryController : Controller
+    public class BlogController : Controller
     {
-        readonly ICategoryService _service;
+        readonly IBlogService _service;
 
-        public CategoryController(ICategoryService service)
+        public BlogController(IBlogService service)
         {
             _service = service;
         }
 
-        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return View(await _service.GetAll());
+            return View(await _service.GetAllAsync());
         }
 
         [HttpGet]
@@ -26,30 +25,27 @@ namespace MyBlog.App.Areas.admin.Controllers
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CategoryCreateDto dto)
+        public async Task<IActionResult> Create(BlogCreateDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(dto);
-            }
+            if (!ModelState.IsValid) View(dto);
+
             await _service.CreateAsync(dto);
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpGet("category/edit/{id}")]
+        [HttpGet("blog/edit/{id}")]
         public async Task<IActionResult> Edit([FromRoute] int id)
         {
             var getDto = await _service.GetSingleAsync(id);
-            var updateDto = new CategoryUpdateDto() { Name = getDto.Name, Id = id };
+            var updateDto = new BlogUpdateDto() { Title = getDto.Title, Text = getDto.Text, Id = id };
             return View(updateDto);
         }
 
-        [HttpPost("category/edit/{id}")]
+        [HttpPost("blog/edit/{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([FromRoute] int id, CategoryUpdateDto dto)
+        public async Task<IActionResult> Edit([FromRoute] int id, BlogUpdateDto dto)
         {
             if (!ModelState.IsValid)
             {
@@ -59,7 +55,7 @@ namespace MyBlog.App.Areas.admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost("category/remove/{id}")]
+        [HttpPost("blog/remove/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Remove([FromRoute] int id)
         {
