@@ -1,0 +1,55 @@
+﻿@model RegisterDto
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="card card-primary card-outline mb-4">
+    <!--begin::Header-->
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Register</h4>
+    </div>
+    <!--end::Header-->
+    <!--begin::Form-->
+    <form asp-action="Register" method="post" asp-antiforgery="true">
+        <!--begin::Body-->
+        <div class="card-body">
+            <div class="mb-3">
+                <label asp-for="@Model.Email" class="form-label">Email</label>
+                <input type="email" asp-for="@Model.Email" class="input" placeholder="e.g. test@gmail.com" />
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Password" class="form-label">Password</label>
+                <input type="password" asp-for="@Model.Password" class="input" />
+                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.UserName" class="form-label">UserName</label>
+                <input asp-for="@Model.UserName" class="input" placeholder="e.g. Technology" />
+                <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+            </div>
+        </div>
+        <!--end::Body-->
+        <!--begin::Footer-->
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <a cclass="btn" onclick="register()" asp-controller="home" asp-action="index">Cancel</a>
+        </div>
+        <p>Already have account? <a asp-controller="AppUser" asp-action="Login">Login</a></p>
+        <!--end::Footer-->
+    </form>
+    <!--end::Form-->
+</div>
+
+
+
+@* <div class="form-box">
+    <h2>Register</h2>
+
+    <input id="regEmail" class="input" placeholder="Email">
+    <input id="regUser" class="input" placeholder="Username">
+    <input id="regPass" type="password" class="input" placeholder="Password">
+
+    <button class="btn" onclick="register()">Register</button>
+
+</div> *@

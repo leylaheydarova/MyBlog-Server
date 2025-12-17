@@ -2,7 +2,20 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>First MVC training</p>
-</div>
+<div class="container">
+
+    <h2>Blogs</h2>
+    <div class="filter">
+        <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="tech">Tech</option>
+            <option value="life">Lifestyle</option>
+            <option value="food">Food</option>
+        </select>
+    </div>
+
+    <div id="postList"></div>
+
+    <div class="blog-list" id="blogList"></div>
+    <div class="container">
+    </div>

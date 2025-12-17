@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MyBlog.App.Contexts;
 using MyBlog.App.Models.BaseModels;
 using MyBlog.App.Repositories.Interfaces;
+using System.Linq.Expressions;
 
 namespace MyBlog.App.Repositories.Implements
 {
@@ -49,6 +50,21 @@ namespace MyBlog.App.Repositories.Implements
                 }
             }
             var entity = await query.FirstOrDefaultAsync(e => e.Id == id);
+            return entity;
+        }
+
+        public async Task<T> GetWhereAsync(Expression<Func<T, bool>> predicate, bool isTracking, params string[] includes)
+        {
+            var query = Table.AsQueryable();
+            if (!isTracking) query = query.AsNoTracking();
+            if (includes.Any())
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include);
+                }
+            }
+            var entity = await query.FirstOrDefaultAsync(predicate);
             return entity;
         }
 

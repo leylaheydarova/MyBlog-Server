@@ -1,0 +1,22 @@
+﻿@model LoginDto
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="form-box">
+    <h2>Login</h2>
+<form asp-controller="AppUser" asp-action="Login" method="post" asp-antiforgery="true">
+
+
+        <label asp-for="@Model.UserName">Username:</label>
+        <input asp-for="@Model.UserName" class="input" placeholder="Username">
+        <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+
+        <label asp-for="@Model.Password">Password:</label>
+        <input asp-for="@Model.Password" class="input" type="password" placeholder="Password">
+        <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+
+        <button class="btn" onclick="login()">Login</button>
+</form>
+
+    <p>No account? <a asp-controller="AppUser" asp-action="Register">Register</a></p>
+</div>

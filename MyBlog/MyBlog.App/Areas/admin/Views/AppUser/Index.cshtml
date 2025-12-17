@@ -1,0 +1,65 @@
+﻿@model List<AppUserGetDto>
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">Users</h1>
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="mb-3">
+            <a class="btn btn-outline-secondary"
+               asp-area="admin"
+               asp-controller="AppUser"
+               asp-action="Index">
+            </a>
+        </div>
+
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Blogs List</h5>
+        </div>
+        <div class="card-body p-0">
+            @if (Model.Count == 0)
+            {
+                <div class="p-4 text-center text-muted">
+                    <i class="fas fa-info-circle me-2"></i> No Users found.
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Email</th>
+                                <th>Username</th>
+                                <th>CreatedDate</th>
+                                <th>UpdatedDate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var category in Model ?? [])
+                            {
+                                <tr>
+                                    <td>@category.Id</td>
+                                    <td>@category.Email</td>
+                                    <td>@category.UserName</td>
+                                    <td>@category.CreatedDate</td>
+                                    <td>@category.UpdatedDate</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+}

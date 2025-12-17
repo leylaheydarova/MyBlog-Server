@@ -15,10 +15,12 @@ option.UseNpgsql(builder.Configuration["ConnectionString:Default"]));
 //Repositories
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
 
 //Services
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<IAppUserService, AppUserService>();
 
 var app = builder.Build();
 

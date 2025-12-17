@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyBlog.App.Models.BaseModels;
+using System.Linq.Expressions;
 
 namespace MyBlog.App.Repositories.Interfaces
 {
@@ -12,5 +13,6 @@ namespace MyBlog.App.Repositories.Interfaces
         Task<int> SaveAsync();
         IQueryable<T> GetAll(bool isTracking, params string[] includes);
         Task<T> GetByIdAsync(int id, bool isTracking, params string[] includes);
+        Task<T> GetWhereAsync(Expression<Func<T, bool>> predicate, bool isTracking, params string[] includes);
     }
 }
