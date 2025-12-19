@@ -1,0 +1,24 @@
+﻿@model AppUserGetDto
+
+<div class="profile-card">
+    <h2>Account</h2>
+
+    <div class="info">
+        <p><strong>Username:</strong> @Model.UserName</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+    </div>
+
+    <a asp-controller="AppUser" method="post" asp-action="Edit" asp-route-id ="@Model.Id" class="btn">Update</a>
+    <form asp-controller="AppUser" method="post" asp-action="RemoveAccount" asp-route-id="@Model.Id"
+          class="d-inline">
+        <button class="btn btn-sm btn-danger" type="submit">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </form>
+    <form asp-controller="AppUser" asp-action="Logout" method="post"
+          class="d-inline">
+        <button class="btn btn-sm btn-warning" type="submit">
+            Logout
+        </button>
+    </form>
+</div>

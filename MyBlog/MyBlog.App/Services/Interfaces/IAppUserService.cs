@@ -9,6 +9,6 @@ namespace MyBlog.App.Services.Interfaces
         Task UpdateAsync(int id, AppUserUpdateDto dto);
         Task<List<AppUserGetDto>> GetAllAsync();
         Task<AppUserGetDto> GetSingleAsync(int id);
-        Task<bool> LoginAsync(LoginDto dto);
+        Task<int> LoginAsync(LoginDto dto);
     }
 }
