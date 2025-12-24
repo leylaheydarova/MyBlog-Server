@@ -11,5 +11,7 @@ namespace MyBlog.App.Models
         [PasswordPropertyText]
         public string Password { get; set; }
         public string UserName { get; set; }
+        public Favorite Favorite { get; set; } //navigation property
+
     }
 }

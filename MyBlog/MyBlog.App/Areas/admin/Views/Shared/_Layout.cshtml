@@ -3,7 +3,7 @@
 <!--begin::Head-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>@ViewData["Title"] - MyBlog</title>
+    <title>@ViewData["Title"] - DSD.Web</title>
 
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -65,23 +65,24 @@
     <div class="app-wrapper">
         <!--begin::Header-->
         <partial name="_Header">
-        <!--end::Header-->
-        <!--begin::Sidebar-->
-        <partial name="_Sidebar">
-        <!--end::Sidebar-->
-        <!--begin::App Main-->
-        <main class="app-main">
-            @RenderBody()
-        </main>
-        <!--end::App Main-->
-        <!--begin::Footer-->
-        <partial name="_Footer">
-        <!--end::Footer-->
+            <!--end::Header-->
+            <!--begin::Sidebar-->
+            <partial name="_Sidebar">
+                <!--end::Sidebar-->
+                <!--begin::App Main-->
+                <main class="app-main">
+                    @RenderBody()
+                </main>
+                <!--end::App Main-->
+                <!--begin::Footer-->
+                <partial name="_Footer">
+                    <!--end::Footer-->
     </div>
     <!--end::App Wrapper-->
     <!--begin::Script-->
     <partial name="_Scripts">
-    <!--end::Script-->
+        @await RenderSectionAsync("Scripts", required: false)
+        <!--end::Script-->
 </body>
 <!--end::Body-->
 </html>

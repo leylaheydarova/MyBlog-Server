@@ -10,10 +10,12 @@ namespace MyBlog.App.Services.Implements
     public class AppUserService : IAppUserService
     {
         readonly IAppUserRepository _repository;
+        readonly IFavoriteRepository _favoriteRepository;
 
-        public AppUserService(IAppUserRepository repository)
+        public AppUserService(IAppUserRepository repository, IFavoriteRepository favoriteRepository)
         {
             _repository = repository;
+            _favoriteRepository = favoriteRepository;
         }
 
         public async Task<List<AppUserGetDto>> GetAllAsync()
@@ -61,7 +63,8 @@ namespace MyBlog.App.Services.Implements
                 Email = dto.Email,
                 Password = dto.Password,
                 UserName = dto.UserName,
-                CreatedDate = DateTime.UtcNow.AddHours(4)
+                CreatedDate = DateTime.UtcNow.AddHours(4),
+                Favorite = new() { CreatedDate = DateTime.UtcNow.AddHours(4) }
             };
 
             await _repository.AddAsync(user);
@@ -72,6 +75,7 @@ namespace MyBlog.App.Services.Implements
         {
             var user = await _repository.GetByIdAsync(id, true);
             if (user == null) throw new NotFoundException("user");
+            _favoriteRepository.Remove(user.Favorite);
             _repository.Remove(user);
             await _repository.SaveAsync();
         }

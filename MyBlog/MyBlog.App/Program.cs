@@ -16,11 +16,14 @@ builder.Services.AddSession();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
+builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
+builder.Services.AddScoped<IFavoriteItemRepository, FavoriteItemRepository>();
 
 //Services
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<IAppUserService, AppUserService>();
+builder.Services.AddScoped<IFavoriteItemService, FavoriteItemService>();
 
 var app = builder.Build();
 
