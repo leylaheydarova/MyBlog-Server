@@ -24,7 +24,7 @@ namespace MyBlog.App.Services.Implements
             var blog = await _blogRepository.GetByIdAsync(blogId, false);
             if (blog == null) throw new NotFoundException("blog");
 
-            var favorite = _favoriteRepository.GetUserFavoriteListAsync(userId, false);
+            var favorite = await _favoriteRepository.GetUserFavoriteListAsync(userId, false);
             if (favorite == null) throw new NotFoundException("favorite list");
 
             var item = new FavoriteItem()

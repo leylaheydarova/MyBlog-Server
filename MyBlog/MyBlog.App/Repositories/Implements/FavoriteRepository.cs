@@ -17,16 +17,15 @@ namespace MyBlog.App.Repositories.Implements
 
         public async Task<Favorite> GetUserFavoriteListAsync(int userId, bool isTracking, params string[] includes)
         {
-            var query = _context.Favorites.AsQueryable();
-            if (!isTracking) query = query.AsNoTracking();
+            var favorites = _context.Favorites.AsQueryable();
             if (includes.Any())
             {
                 foreach (var include in includes)
                 {
-                    query = query.Include(include);
+                    favorites = favorites.Include(include);
                 }
             }
-            var favorite = await query.FirstOrDefaultAsync(f => f.UserId == userId);
+            var favorite = await favorites.FirstOrDefaultAsync(f => f.UserId == userId);
             return favorite;
         }
 

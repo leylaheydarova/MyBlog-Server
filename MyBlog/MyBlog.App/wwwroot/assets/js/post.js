@@ -1,9 +1,3 @@
-// Fake blog data
-const posts = [
-    { id: 1, title: "MVC nədir?", content: "MVC – Model View Controller arxitekturasıdır..." },
-    { id: 2, title: "Motivasiya", content: "Motivasiya həyatda irəli getmək üçün..." },
-    { id: 3, title: "Pankek resepti", content: "Un, yumurta, süd..." }
-];
 
 // Bloqları homepage-də göstər
 if (document.getElementById("blogList")) {
@@ -15,7 +9,7 @@ if (document.getElementById("blogList")) {
                 <p>${p.content.substring(0, 60)}...</p>
 
                 <a href="post.html?id=${p.id}" class="btn">Read</a>
-                <span class="heart" onclick="addToFav(${p.id})">♥</span>
+                
             </div>
         `;
     });

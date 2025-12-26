@@ -8,6 +8,7 @@
         <p><strong>Email:</strong> @Model.Email</p>
     </div>
 
+    <a class="btn btn-primary" asp-controller="favorite" asp-action="index">Favorites</a>
     <a asp-controller="AppUser" method="post" asp-action="Edit" asp-route-id ="@Model.Id" class="btn">Update</a>
     <form asp-controller="AppUser" method="post" asp-action="RemoveAccount" asp-route-id="@Model.Id"
           class="d-inline">

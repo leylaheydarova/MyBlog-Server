@@ -1,21 +1,31 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.App.Models;
+using MyBlog.App.Services.Interfaces;
+using MyBlog.App.ViewModels.Home;
+using System.Diagnostics;
 
 namespace MyBlog.App.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        readonly IBlogService _blogService;
+        readonly ICategoryService _categoryService;
+        public HomeController(IBlogService blogService, ICategoryService categoryService)
         {
-            _logger = logger;
+            _blogService = blogService;
+            _categoryService = categoryService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var categories = await _categoryService.GetAll();
+            var blogs = await _blogService.GetAllAsync();
+            var vm = new IndexVM()
+            {
+                Blogs = blogs,
+                Categories = categories
+            };
+            return View(vm);
         }
 
         public IActionResult Privacy()

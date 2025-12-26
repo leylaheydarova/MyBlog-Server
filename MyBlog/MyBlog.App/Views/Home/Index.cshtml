@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IndexVM
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,14 +9,33 @@
     <h2>Blogs</h2>
     <div class="filter">
         <select id="categoryFilter">
-            <option value="all">All Categories</option>
-            <option value="tech">Tech</option>
-            <option value="life">Lifestyle</option>
-            <option value="food">Food</option>
+            @foreach(var category in Model.Categories)
+            {
+                <option value="all">@category.Name</option>
+            }
+            
         </select>
     </div>
 
-    <div id="postList"></div>
+    <div class="fav-list">
+        @foreach (var blog in Model.Blogs)
+        {
+            <div class="fav-card">
+                <h3>@blog.Title</h3>
+                <p>@blog.Text</p>
+                <form method="post" asp-controller="favorite" asp-action="addtolist" asp-route-blogId="@blog.Id">
+                    <button type="submit"><i class="fas fa-heart"></i></button>
+                </form>
+
+                @*<a asp-controller="Blog"
+                       asp-action="Index"
+                       asp-route-id="@post.Id" 
+                   href="#" class="btn">
+                    Read more
+                </a>*@
+            </div>
+        }
+    </div>
 
     <div class="blog-list" id="blogList"></div>
     <div class="container">

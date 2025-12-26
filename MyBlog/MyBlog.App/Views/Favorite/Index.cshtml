@@ -1,0 +1,22 @@
+﻿@model FavoriteGetDto
+
+<div class="container">
+    <h2>My Favorites</h2>
+
+    @if (Model is null)
+    {
+        <p>You don't have any favorites yet.</p>
+    }
+    else
+    {
+        <div class="fav-list">
+            @foreach (var post in Model.ItemGetDtos)
+            {
+                <div class="fav-card">
+                    <h3>@post.BlogTitle</h3>
+                    <p>@post.BlogText</p>
+                </div>
+            }
+        </div>
+    }
+</div>

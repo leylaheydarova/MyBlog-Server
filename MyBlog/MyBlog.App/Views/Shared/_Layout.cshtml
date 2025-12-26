@@ -27,12 +27,12 @@
 
     <div class="container">
         <div class="container">
-            @RenderBody();
+            @RenderBody()
     </div>
 
-        <script src="~/assets/js/post.js"></script>
+        @* <script src="~/assets/js/post.js"></script>
         <script src="~/assets/js/script.js"></script>
-        <script src="~/assets/js/auth.js"></script>
+        <script src="~/assets/js/auth.js"></script> *@
         @await RenderSectionAsync("Scripts", required: false)
         <script></script>
 </body>

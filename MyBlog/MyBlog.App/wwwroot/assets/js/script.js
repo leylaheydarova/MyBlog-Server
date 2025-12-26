@@ -1,9 +1,3 @@
-const posts = [
-    { id: 1, title: "ASP.NET MVC nədir?", category: "tech", content: "MVC proqramlaşdırmada..." },
-    { id: 2, title: "Həyat motivasiyası", category: "life", content: "Motivasiya gündəlik həyatda..." },
-    { id: 3, title: "Pankek resepti", category: "food", content: "Ən yüngül pankek resepti..." }
-];
-
 const postList = document.getElementById("postList");
 const filter = document.getElementById("categoryFilter");
 
