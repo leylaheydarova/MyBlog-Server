@@ -18,12 +18,14 @@ builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
 builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
 builder.Services.AddScoped<IFavoriteItemRepository, FavoriteItemRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
 //Services
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<IAppUserService, AppUserService>();
 builder.Services.AddScoped<IFavoriteItemService, FavoriteItemService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 
 var app = builder.Build();
 
@@ -42,16 +44,11 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapAreaControllerRoute(
-       name: "admin",
-        areaName: "admin",
-        pattern: "admin/{controller=AdminHome}/{action=Index}/{id?}");
+app.MapControllerRoute(
+            name: "areas",
+            pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
-});
+app.MapControllerRoute(name: "Default",
+    pattern: "/{controller=Home}/{action=Index}/{Id?}");
 
 app.Run();

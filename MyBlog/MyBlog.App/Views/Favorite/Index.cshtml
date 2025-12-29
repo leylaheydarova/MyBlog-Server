@@ -15,6 +15,10 @@
                 <div class="fav-card">
                     <h3>@post.BlogTitle</h3>
                     <p>@post.BlogText</p>
+
+                    <form asp-controller="Favorite" asp-action="RemoveFromList" method="post" asp-route-itemId="@post.Id">
+                        <button type="submit"><i class="fas fa-trash-alt"></i></button>
+                    </form>
                 </div>
             }
         </div>

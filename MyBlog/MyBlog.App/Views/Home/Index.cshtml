@@ -23,16 +23,18 @@
             <div class="fav-card">
                 <h3>@blog.Title</h3>
                 <p>@blog.Text</p>
-                <form method="post" asp-controller="favorite" asp-action="addtolist" asp-route-blogId="@blog.Id">
-                    <button type="submit"><i class="fas fa-heart"></i></button>
-                </form>
-
-                @*<a asp-controller="Blog"
-                       asp-action="Index"
-                       asp-route-id="@post.Id" 
-                   href="#" class="btn">
-                    Read more
-                </a>*@
+                <div class="d-flex align-items-center gap-2">
+                    <form method="post" asp-controller="favorite" asp-action="addtolist" asp-route-blogId="@blog.Id">
+                        <button type="submit"><i class="fas fa-heart"></i></button>
+                    </form>
+                    <br>
+                    <a asp-controller="Blog"
+                       asp-action="Get"
+                       asp-route-id="@blog.Id"
+                       class="btn">
+                        Read more
+                    </a>
+                </div>
             </div>
         }
     </div>

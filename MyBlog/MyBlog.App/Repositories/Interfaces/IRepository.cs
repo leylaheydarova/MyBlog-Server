@@ -12,6 +12,7 @@ namespace MyBlog.App.Repositories.Interfaces
         bool Update(T entity);
         Task<int> SaveAsync();
         IQueryable<T> GetAll(bool isTracking, params string[] includes);
+        IQueryable<T> GetAllWhere(Expression<Func<T, bool>> predicate, bool isTracking, params string[] includes);
         Task<T> GetByIdAsync(int id, bool isTracking, params string[] includes);
         Task<T> GetWhereAsync(Expression<Func<T, bool>> predicate, bool isTracking, params string[] includes);
     }

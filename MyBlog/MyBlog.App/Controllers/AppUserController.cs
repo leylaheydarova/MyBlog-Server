@@ -40,6 +40,7 @@ namespace MyBlog.App.Controllers
         {
             if (!ModelState.IsValid) return View(dto);
             await _service.RegisterAsync(dto);
+            HttpContext.Session.Remove("UserId");
             return RedirectToAction(
                 actionName: "Index",
                 controllerName: "Home");

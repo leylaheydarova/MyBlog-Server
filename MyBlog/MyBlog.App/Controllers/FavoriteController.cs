@@ -12,6 +12,7 @@ namespace MyBlog.App.Controllers
             _service = service;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             int userId = HttpContext.Session.GetInt32("UserId").Value;
@@ -29,6 +30,13 @@ namespace MyBlog.App.Controllers
             return RedirectToAction(
                 controllerName: "Home",
                 actionName: "Index");
+        }
+
+        [HttpPost("removeFromList/{itemId}")]
+        public async Task<IActionResult> RemoveFromList([FromRoute] int itemId)
+        {
+            await _service.RemoveAsync(itemId);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

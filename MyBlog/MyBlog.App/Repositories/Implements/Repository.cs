@@ -38,6 +38,20 @@ namespace MyBlog.App.Repositories.Implements
             return query;
         }
 
+        public IQueryable<T> GetAllWhere(Expression<Func<T, bool>> predicate, bool isTracking, params string[] includes)
+        {
+            var query = Table.Where(predicate).AsQueryable();
+            if (!isTracking) query = query.AsNoTracking();
+            if (includes.Any())
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include);
+                }
+            }
+            return query;
+        }
+
         public async Task<T> GetByIdAsync(int id, bool isTracking, params string[] includes)
         {
             var query = Table.AsQueryable();

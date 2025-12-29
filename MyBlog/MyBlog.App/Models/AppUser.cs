@@ -12,6 +12,6 @@ namespace MyBlog.App.Models
         public string Password { get; set; }
         public string UserName { get; set; }
         public Favorite Favorite { get; set; } //navigation property
-
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
     }
 }
